@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "632574204211",
+    "firebase_url": "https://let-me-out-kmitl.firebaseio.com",
+    "project_id": "let-me-out-kmitl",
+    "storage_bucket": "let-me-out-kmitl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632574204211:android:c0f362e5bbc9ae9e",
+        "android_client_info": {
+          "package_name": "com.km.letmeoutkmitl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632574204211-mdraqfchlrrbm3cj2vphae5uqb7036jf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.km.letmeoutkmitl",
+            "certificate_hash": "4adf12af9a1dac00b8430f4026b72e8981db6a05"
+          }
+        },
+        {
+          "client_id": "632574204211-2rc8c16o557s80sa06c384bim2sa4un0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2xHWIgNKJZo1XvKVn7_f_Lhwv6WQOBpM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632574204211-2rc8c16o557s80sa06c384bim2sa4un0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
