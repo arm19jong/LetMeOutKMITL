@@ -1,5 +1,6 @@
 package com.km.letmeoutkmitl
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.gms.common.api.ApiException
@@ -10,22 +11,60 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.gms.common.SignInButton
 import com.km.letmeoutkmitl.signin.SignInWithGoogle
+//import android.support.test.espresso.core.internal.deps.guava.io.ByteStreams.toByteArray
+import android.provider.SyncStateContract.Helpers.update
+import android.content.pm.PackageManager
+import android.content.pm.PackageInfo
+import android.util.Base64
+import android.util.Log
+import com.km.letmeoutkmitl.signin.SignInWithFB
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 class MainActivity : AppCompatActivity() {
     private val RC_SIGN_IN: Int = 1
+    private val RC_SIGN_IN_FB: Int = 2
     private var signInWithGoogle: SignInWithGoogle? = null
+    private var signInWithFB: SignInWithFB? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         signInWithGoogle = SignInWithGoogle(lifecycle, this)
+        signInWithFB = SignInWithFB(lifecycle, this)
         setContentView(R.layout.activity_main)
         sign_in_button.setOnClickListener {
             signInWithGoogle!!.signIn()
         }
         sign_in_button.setSize(SignInButton.SIZE_WIDE)
 
+        sign_in_button_fb.setOnClickListener{
+            signInWithFB!!.signIn()
+        }
+
     }
 
+//    override fun onStart() {
+//        super.onStart()
+//        printHashKey(this)
+//
+//    }
+
+//    fun printHashKey(pContext: Context) {
+//        try {
+//            val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+//            for (signature in info.signatures) {
+//                val md = MessageDigest.getInstance("SHA")
+//                md.update(signature.toByteArray())
+//                val hashKey = String(Base64.encode(md.digest(), 0))
+//                Log.i("tag2", "printHashKey() Hash Key: " + hashKey)
+//            }
+//        } catch (e: NoSuchAlgorithmException) {
+//            Log.e("tag2", "printHashKey()", e)
+//        } catch (e: Exception) {
+//            Log.e("tag2", "printHashKey()", e)
+//        }
+//
+//    }
 
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -45,8 +84,10 @@ class MainActivity : AppCompatActivity() {
                 // ...
             }
             Toast.makeText(this, "Google sign in failed2", Toast.LENGTH_SHORT)
-
-
+        }
+        else if(signInWithFB!!.onActivityResult(requestCode, resultCode, data)){
+//            Log.d("tag2", "activity")
+//            signInWithFB!!.onActivityResult(requestCode, resultCode, data)
         }
     }
 

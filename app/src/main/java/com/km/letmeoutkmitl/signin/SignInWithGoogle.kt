@@ -65,7 +65,7 @@ class SignInWithGoogle : LifecycleObserver {
                         // Sign in success, update UI with the signed-in user's information
 //                        Log.d(FragmentActivity.TAG, "signInWithCredential:success")
                         val user = mAuth!!.getCurrentUser()
-                        Toast.makeText(activity, "สำเร็จ: "+user!!.email, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "สำเร็จ: "+user!!.uid, Toast.LENGTH_SHORT).show()
 //                        updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
