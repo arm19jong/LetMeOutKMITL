@@ -14,6 +14,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.km.letmeoutkmitl.R
+import com.km.letmeoutkmitl.user.UserSP
+import com.km.letmeoutkmitl.MainActivity
+
+
 
 
 /**
@@ -65,7 +69,10 @@ class SignInWithGoogle : LifecycleObserver {
                         // Sign in success, update UI with the signed-in user's information
 //                        Log.d(FragmentActivity.TAG, "signInWithCredential:success")
                         val user = mAuth!!.getCurrentUser()
-                        Toast.makeText(activity, "สำเร็จ: "+user!!.uid, Toast.LENGTH_SHORT).show()
+                        UserSP.setUid(activity!!, user!!.uid)
+                        Toast.makeText(activity, "สำเร็จ: "+UserSP.getEmail(activity!!), Toast.LENGTH_SHORT).show()
+                        val m = activity as MainActivity
+                        m.checkLogin()
 //                        updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.

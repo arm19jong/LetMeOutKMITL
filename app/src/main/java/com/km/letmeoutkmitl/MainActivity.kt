@@ -18,8 +18,11 @@ import android.content.pm.PackageInfo
 import android.util.Base64
 import android.util.Log
 import com.km.letmeoutkmitl.signin.SignInWithFB
+import com.km.letmeoutkmitl.user.EditProfileActivity
+import com.km.letmeoutkmitl.user.UserSP
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private var signInWithFB: SignInWithFB? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        checkLogin()
         signInWithGoogle = SignInWithGoogle(lifecycle, this)
         signInWithFB = SignInWithFB(lifecycle, this)
         setContentView(R.layout.activity_main)
@@ -40,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         sign_in_button_fb.setOnClickListener{
             signInWithFB!!.signIn()
         }
+        sign_in_button_fb.setReadPermissions(Arrays.asList("email", "public_profile"))
 
     }
 
@@ -76,6 +81,7 @@ class MainActivity : AppCompatActivity() {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
+                UserSP.setEmail(this, account.email!!)
                 signInWithGoogle!!.firebaseAuthWithGoogle(account)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
@@ -91,6 +97,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    public fun checkLogin(){
+        if (!UserSP.getUid(this).equals("")){
+//            Login Sucess
+            val intent = Intent(this, EditProfileActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+    }
 
 
 }
