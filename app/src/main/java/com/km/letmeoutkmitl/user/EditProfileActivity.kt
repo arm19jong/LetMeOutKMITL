@@ -42,6 +42,22 @@ class EditProfileActivity:AppCompatActivity() {
                         }
                     })
         }
+        ViewModelProviders.of(this)
+                .get(ManageUser::class.java)
+                .getUser(uid)
+                .observe(this, Observer {
+                    if (it == User()){
+
+                    }
+                    else{
+                        email.setText(it!!.email)
+                        firstname.setText(it.firstname)
+                        lastname.setText(it.lastname)
+                        mobilephone1.setText(it.mobilephone1)
+                        mobilephone2.setText(it.mobilephone2)
+                        officephone.setText(it.officephone)
+                    }
+                })
 
     }
 

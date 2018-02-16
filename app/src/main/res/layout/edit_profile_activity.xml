@@ -26,18 +26,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="mobilephone1"
+        android:inputType="number"
+        android:maxLength="10"
         />
     <EditText
         android:id="@+id/mobilephone2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="mobilephone2"
+        android:inputType="number"
+        android:maxLength="10"
         />
     <EditText
         android:id="@+id/officephone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="officephone"
+        android:inputType="number"
+        android:maxLength="9"
         />
     <Button
         android:id="@+id/save"
