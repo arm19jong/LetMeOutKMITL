@@ -1,5 +1,6 @@
 package com.km.letmeoutkmitl.user
 
+import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -18,9 +19,14 @@ import kotlinx.android.synthetic.main.edit_profile_activity.*
 class EditProfileActivity:AppCompatActivity() {
     var user: User = User()
     var uid:String = ""
+    var progress_spinner:ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        progress_spinner = ProgressDialog(this@EditProfileActivity)
+        progress_spinner!!.setMessage("Loading...")
+        progress_spinner!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+
         uid = UserSP.getUid(this)
         setContentView(R.layout.edit_profile_activity)
         save.setOnClickListener {
@@ -44,16 +50,18 @@ class EditProfileActivity:AppCompatActivity() {
                         }
                     })
         }
+        progress_spinner!!.show()
         ViewModelProviders.of(this)
                 .get(ManageUser::class.java)
                 .getUser(uid)
                 .observe(this, Observer {
+                    progress_spinner!!.cancel()
                     if (it == User()){
                         email.setText(UserSP.getEmail(this))
                     }
                     else{
                         UserSP.setEmail(this, it!!.email)
-                        email.setText(it!!.email)
+                        email.setText(it.email)
                         firstname.setText(it.firstname)
                         lastname.setText(it.lastname)
                         mobilephone1.setText(it.mobilephone1)
