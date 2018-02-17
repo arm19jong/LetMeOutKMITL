@@ -3,11 +3,13 @@ package com.km.letmeoutkmitl.user
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.km.letmeoutkmitl.R
 import com.km.letmeoutkmitl.firebase.ManageUser
+import com.km.letmeoutkmitl.qr.GenQrActivity
 import kotlinx.android.synthetic.main.edit_profile_activity.*
 
 /**
@@ -47,9 +49,10 @@ class EditProfileActivity:AppCompatActivity() {
                 .getUser(uid)
                 .observe(this, Observer {
                     if (it == User()){
-
+                        email.setText(UserSP.getEmail(this))
                     }
                     else{
+                        UserSP.setEmail(this, it!!.email)
                         email.setText(it!!.email)
                         firstname.setText(it.firstname)
                         lastname.setText(it.lastname)
@@ -58,6 +61,10 @@ class EditProfileActivity:AppCompatActivity() {
                         officephone.setText(it.officephone)
                     }
                 })
+        genQr.setOnClickListener {
+            val intent = Intent(this, GenQrActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

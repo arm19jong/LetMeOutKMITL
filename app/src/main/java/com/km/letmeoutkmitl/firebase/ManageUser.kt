@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.km.letmeoutkmitl.user.User
+import com.km.letmeoutkmitl.user.UserSP
 
 
 /**
@@ -42,7 +43,12 @@ class ManageUser : ViewModel() {
                 }
 
                 override fun onDataChange(p0: DataSnapshot?) {
-                    user!!.value = p0!!.getValue(User::class.java)
+                    if(p0!!.value==null){
+                        user!!.value = User()
+                    }
+                    else{
+                        user!!.value = p0!!.getValue(User::class.java)
+                    }
                 }
             })
 
