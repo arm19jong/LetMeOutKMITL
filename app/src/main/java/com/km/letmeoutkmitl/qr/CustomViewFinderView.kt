@@ -4,8 +4,10 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.util.TypedValue
+import com.km.letmeoutkmitl.R
 import me.dm7.barcodescanner.core.ViewFinderView
 
 /**
@@ -23,7 +25,8 @@ class CustomViewFinderView : ViewFinderView {
     }
 
     private fun init() {
-        PAINT.color = Color.WHITE
+        PAINT.color = ContextCompat.getColor(context, R.color.orange)
+
         PAINT.isAntiAlias = true
         val textPixelSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                 TRADE_MARK_TEXT_SIZE_SP.toFloat(), resources.displayMetrics)
@@ -51,7 +54,7 @@ class CustomViewFinderView : ViewFinderView {
     }
 
     companion object {
-        val TRADE_MARK_TEXT = "ZXing"
+        val TRADE_MARK_TEXT = ""
         val TRADE_MARK_TEXT_SIZE_SP = 40
     }
 }

@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +24,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
  */
 class ScanQrFragment:BaseFragment(), ZXingScannerView.ResultHandler {
     private var mScannerView: ZXingScannerView? = null
-
+    private var flash:Boolean = false
     companion object Factory {
         fun newInstance(): ScanQrFragment {
             var arg = Bundle()
@@ -30,6 +32,17 @@ class ScanQrFragment:BaseFragment(), ZXingScannerView.ResultHandler {
             flagment.arguments = arg
             return flagment
         }
+    }
+
+    fun setFlash(){
+        flash = !flash
+        if (flash){
+            bindView!!.flash.background = ContextCompat.getDrawable(context!!, R.drawable.ic_flash_on)
+        }
+        else{
+            bindView!!.flash.background = ContextCompat.getDrawable(context!!, R.drawable.ic_flash_off)
+        }
+        mScannerView!!.flash = flash
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,6 +55,9 @@ class ScanQrFragment:BaseFragment(), ZXingScannerView.ResultHandler {
         super.onViewCreated(view, savedInstanceState)
         bindView = view
         bindView!!.content_frame.addView(mScannerView)
+        bindView!!.flash.setOnClickListener{
+            setFlash()
+        }
 
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,8 +91,8 @@ class ScanQrFragment:BaseFragment(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(rawResult: Result) {
-        Toast.makeText(this.context, "Contents = " + rawResult.text +
-                ", Format = " + rawResult.barcodeFormat.toString(), Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this.context, "Contents = " + rawResult.text +
+//                ", Format = " + rawResult.barcodeFormat.toString(), Toast.LENGTH_SHORT).show()
 
         // Note:
         // * Wait 2 seconds to resume the preview.

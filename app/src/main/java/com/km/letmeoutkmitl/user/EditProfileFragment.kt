@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.km.letmeoutkmitl.R
 import com.km.letmeoutkmitl.baseclass.BaseFragment
 import com.km.letmeoutkmitl.firebase.ManageUser
+import kotlinx.android.synthetic.main.edit_profile_fragment.*
 import kotlinx.android.synthetic.main.edit_profile_fragment.view.*
 
 /**
@@ -39,6 +40,9 @@ class EditProfileFragment :BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         bindView = view
         bindView!!.save.setOnClickListener {
+            if (!check()){
+                return@setOnClickListener
+            }
             user = User(
                     email = bindView!!.email.text.toString(),
                     firstname = bindView!!.firstname.text.toString(),
@@ -60,6 +64,35 @@ class EditProfileFragment :BaseFragment() {
                     })
         }
 
+
+    }
+    fun check():Boolean{
+        var bool = true
+        if (email.text.toString() == ""){
+            bool = false
+            email.error = "not null"
+        }
+        else{email.error = null}
+
+        if(firstname.text.toString() == ""){
+            bool = false
+            firstname.error = "not null"
+        }
+        else{firstname.error = null}
+
+        if(lastname.text.toString() == ""){
+            bool = false
+            lastname.error = "not null"
+        }
+        else{lastname.error = null}
+
+        if(mobilephone1.text.toString() == ""){
+            bool = false
+            mobilephone1.setError("not null")
+        }
+        else{mobilephone1.error = null}
+
+        return bool
 
     }
     override fun onCreate(savedInstanceState: Bundle?) {

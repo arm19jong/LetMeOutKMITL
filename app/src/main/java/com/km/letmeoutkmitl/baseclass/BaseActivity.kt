@@ -3,6 +3,9 @@ package com.km.letmeoutkmitl.baseclass
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.km.letmeoutkmitl.R
+import android.widget.Toast
+
+
 
 /**
  * Created by jongzazaal on 2/21/2018.
