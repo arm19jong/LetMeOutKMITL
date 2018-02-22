@@ -1,6 +1,5 @@
 package com.km.letmeoutkmitl
 
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.gms.common.api.ApiException
@@ -12,16 +11,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.gms.common.SignInButton
 import com.km.letmeoutkmitl.signin.SignInWithGoogle
 //import android.support.test.espresso.core.internal.deps.guava.io.ByteStreams.toByteArray
-import android.provider.SyncStateContract.Helpers.update
-import android.content.pm.PackageManager
-import android.content.pm.PackageInfo
-import android.util.Base64
-import android.util.Log
 import com.km.letmeoutkmitl.signin.SignInWithFB
-import com.km.letmeoutkmitl.user.EditProfileActivity
 import com.km.letmeoutkmitl.user.UserSP
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 import java.util.*
 
 
@@ -100,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     public fun checkLogin(){
         if (!UserSP.getUid(this).equals("")){
 //            Login Sucess
-            val intent = Intent(this, EditProfileActivity::class.java)
+            val intent = Intent(this, MainActivityy::class.java)
             startActivity(intent)
             finish()
             return

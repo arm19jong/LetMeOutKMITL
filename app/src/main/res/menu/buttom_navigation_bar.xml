@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_scan"
+        android:enabled="true"
+        android:icon="@drawable/ic_scanqr"
+        android:title="@string/scan"
+        />
+    <item
+        android:id="@+id/item_gen"
+        android:enabled="true"
+        android:icon="@drawable/ic_genqr"
+        android:title="@string/generate"/>
+    <item
+        android:id="@+id/item_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_person"
+        android:title="@string/profile"/>
+
+</menu>

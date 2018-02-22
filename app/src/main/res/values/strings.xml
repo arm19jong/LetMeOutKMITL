@@ -3,4 +3,7 @@
     <string name="default_web_client_id2">AIzaSyBccHrLAfv1573G4Zwimz6GewncTwdpN80</string>
     <string name="facebook_app_id">1897920360221169</string>
     <string name="fb_login_protocol_scheme">fb1897920360221169</string>
+    <string name="scan">SCAN</string>
+    <string name="generate">GENERATE</string>
+    <string name="profile">PROFILE</string>
 </resources>
