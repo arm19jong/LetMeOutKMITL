@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -46,6 +47,7 @@
         </activity>
         <activity android:name=".baseclass.BaseActivity" />
         <activity android:name=".MainActivityy" />
+        <activity android:name=".user.ShowProfileActivity" />
 
     </application>
 

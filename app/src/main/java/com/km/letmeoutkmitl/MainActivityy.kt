@@ -3,6 +3,7 @@ package com.km.letmeoutkmitl
 import android.os.Bundle
 import com.km.letmeoutkmitl.baseclass.BaseActivity
 import com.km.letmeoutkmitl.qr.GenQrFragment
+import com.km.letmeoutkmitl.qr.ScanQrFragment
 import com.km.letmeoutkmitl.user.EditProfileFragment
 import kotlinx.android.synthetic.main.main_activity.*
 
@@ -15,7 +16,7 @@ class MainActivityy:BaseActivity() {
         setContentView(R.layout.main_activity)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.item_scan -> {}
+                R.id.item_scan -> {pushFragment(ScanQrFragment.newInstance())}
                 R.id.item_gen ->{ pushFragment(GenQrFragment.newInstance()) }
                 R.id.item_profile ->{pushFragment(EditProfileFragment.newInstance())}
 
