@@ -1,5 +1,6 @@
 package com.km.letmeoutkmitl.qr
 
+import android.Manifest
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -13,6 +14,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 import com.km.letmeoutkmitl.BuildConfig
 import com.km.letmeoutkmitl.R
 import com.km.letmeoutkmitl.baseclass.BaseFragment
@@ -113,37 +120,55 @@ class GenQrFragment :BaseFragment(),  SimpleDialog.OnDialogResultListener {
 
         }
         bindView!!.layoutSave.setOnClickListener {
-            val filename: String
-            val date = Date()
-            val sdf = SimpleDateFormat("yyyyMMddHHmmss")
-            filename = sdf.format(date)
+            Dexter.withActivity(this.activity)
+                    .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .withListener(object : PermissionListener {
+                        override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                            saveQR()
+                        }
 
-            try {
-                val path = Environment.getExternalStorageDirectory().toString()
-                var fOut: OutputStream? = null
-                val file = File(path+"/DCIM/LetMeOutKMITL/", "$filename.jpg")
-                val folder = File(path+"/DCIM/", "LetMeOutKMITL")
-                if (!folder.exists()) {
-                    folder.mkdirs()
-                }
-                fOut = FileOutputStream(file)
+                        override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
+                            token!!.continuePermissionRequest()
+                        }
 
-                bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, fOut)
-                fOut!!.flush()
-                fOut!!.close()
-
-                MediaStore.Images.Media.insertImage(this.context!!.contentResolver, file.getAbsolutePath(), file.getName(), file.getName())
-                updateImage(file)
-                Toast.makeText(this.context!!, "save done", Toast.LENGTH_SHORT).show()
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+                        override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                            Toast.makeText(context,"permission not granted",Toast.LENGTH_SHORT).show()
+                        }
+                    }).check()
         }
 
 
     }
 
+    fun saveQR(){
+        val filename: String
+        val date = Date()
+        val sdf = SimpleDateFormat("yyyyMMddHHmmss")
+        filename = sdf.format(date)
+
+        try {
+            val path = Environment.getExternalStorageDirectory().toString()
+            var fOut: OutputStream? = null
+            val file = File(path+"/DCIM/LetMeOutKMITL/", "$filename.jpg")
+            val folder = File(path+"/DCIM/", "LetMeOutKMITL")
+            if (!folder.exists()) {
+                folder.mkdirs()
+            }
+            fOut = FileOutputStream(file)
+
+            bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, fOut)
+            fOut!!.flush()
+            fOut!!.close()
+
+            MediaStore.Images.Media.insertImage(this.context!!.contentResolver, file.getAbsolutePath(), file.getName(), file.getName())
+            updateImage(file)
+            Toast.makeText(this.context!!, "save done", Toast.LENGTH_SHORT).show()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
     fun updateImage(file: File) {
         val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
         intent.data = Uri.fromFile(file)

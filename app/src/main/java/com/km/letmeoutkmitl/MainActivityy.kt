@@ -1,7 +1,14 @@
 package com.km.letmeoutkmitl
 
+import android.Manifest
 import android.os.Bundle
 import android.widget.Toast
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 import com.km.letmeoutkmitl.baseclass.BaseActivity
 import com.km.letmeoutkmitl.qr.GenQrFragment
 import com.km.letmeoutkmitl.qr.ScanQrFragment
@@ -19,7 +26,23 @@ class MainActivityy:BaseActivity() {
         setContentView(R.layout.main_activity)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.item_scan -> {pushFragment(ScanQrFragment.newInstance())}
+                R.id.item_scan -> {
+                    Dexter.withActivity(this)
+                            .withPermission(Manifest.permission.CAMERA)
+                            .withListener(object : PermissionListener {
+                                override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                                    pushFragment(ScanQrFragment.newInstance())
+                                }
+
+                                override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
+                                    token!!.continuePermissionRequest()
+                                }
+
+                                override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                                    Toast.makeText(this@MainActivityy,"permission not granted",Toast.LENGTH_SHORT).show()
+                                }
+                            }).check()
+                }
                 R.id.item_gen ->{ pushFragment(GenQrFragment.newInstance()) }
                 R.id.item_profile ->{pushFragment(EditProfileFragment.newInstance())}
 
