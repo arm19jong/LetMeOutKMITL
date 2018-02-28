@@ -92,7 +92,7 @@ class GenQrFragment :BaseFragment(),  SimpleDialog.OnDialogResultListener {
         bindView!!.pic.setImageBitmap(genQr(onColor, offColor))
         bindView!!.layoutShare.setOnClickListener {
             try {
-                val file = File(this.context!!.cacheDir, "logicchip.png")
+                val file = File(this.context!!.cacheDir, "qr.png")
                 val fOut = FileOutputStream(file)
                 bitmap!!.compress(Bitmap.CompressFormat.PNG, 100, fOut)
                 fOut.flush()
@@ -164,7 +164,7 @@ class GenQrFragment :BaseFragment(),  SimpleDialog.OnDialogResultListener {
     }
 
     fun genQr(onColor: Int, offColor: Int): Bitmap {
-        val myBitmap = QRCode.from(uid).withSize(500, 500)
+        val myBitmap = QRCode.from(uid).withSize(720, 720)
                 .withColor(onColor, offColor).bitmap()
         this.bitmap = myBitmap
         return myBitmap

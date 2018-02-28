@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,9 @@ import com.km.letmeoutkmitl.baseclass.BaseFragment
 import com.km.letmeoutkmitl.firebase.ManageUser
 import kotlinx.android.synthetic.main.edit_profile_fragment.*
 import kotlinx.android.synthetic.main.edit_profile_fragment.view.*
+import android.view.KeyEvent.KEYCODE_ENTER
+
+
 
 /**
  * Created by jongzazaal on 2/10/2018.
@@ -40,32 +44,29 @@ class EditProfileFragment :BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         bindView = view
         bindView!!.save.setOnClickListener {
-            if (!check()){
-                return@setOnClickListener
+            if (check()){
+                save()
             }
-            user = User(
-                    email = bindView!!.email.text.toString(),
-                    firstname = bindView!!.firstname.text.toString(),
-                    lastname = bindView!!.lastname.text.toString(),
-                    mobilephone1 = bindView!!.mobilephone1.text.toString(),
-                    mobilephone2 = bindView!!.mobilephone2.text.toString(),
-                    officephone = bindView!!.officephone.text.toString()
-            )
-            ViewModelProviders.of(this)
-                    .get(ManageUser::class.java)
-                    .addOrEditUser(uid, user)
-                    .observe(this, Observer {
-                        if (it==true){
-                            Toast.makeText(this.context, "Saved", Toast.LENGTH_SHORT).show()
-                        }
-                        else{
-                            Toast.makeText(this.context, "Save Failed", Toast.LENGTH_SHORT).show()
-                        }
-                    })
-        }
+            return@setOnClickListener
 
+        }
+        bindView!!.officephone.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+                // If the event is a key-down event on the "enter" button
+                if ((event.action == KeyEvent.ACTION_DOWN) && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    // Perform action on key press
+//                    Toast.makeText(this@EditProfileFragment.context, bindView!!.officephone.text.toString(), Toast.LENGTH_SHORT).show()
+                    if (check()){
+                        save()
+                    }
+                    return true
+                }
+                return false
+            }
+        })
 
     }
+
     fun check():Boolean{
         var bool = true
         if (email.text.toString() == ""){
@@ -94,6 +95,27 @@ class EditProfileFragment :BaseFragment() {
 
         return bool
 
+    }
+    fun save(){
+        user = User(
+                email = bindView!!.email.text.toString(),
+                firstname = bindView!!.firstname.text.toString(),
+                lastname = bindView!!.lastname.text.toString(),
+                mobilephone1 = bindView!!.mobilephone1.text.toString(),
+                mobilephone2 = bindView!!.mobilephone2.text.toString(),
+                officephone = bindView!!.officephone.text.toString()
+        )
+        ViewModelProviders.of(this)
+                .get(ManageUser::class.java)
+                .addOrEditUser(uid, user)
+                .observe(this, Observer {
+                    if (it==true){
+                        Toast.makeText(this.context, "Saved", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        Toast.makeText(this.context, "Save Failed", Toast.LENGTH_SHORT).show()
+                    }
+                })
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
