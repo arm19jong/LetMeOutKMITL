@@ -9,6 +9,7 @@ import android.content.Intent
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.gms.common.SignInButton
+import com.google.firebase.messaging.FirebaseMessaging
 import com.km.letmeoutkmitl.signin.SignInWithGoogle
 //import android.support.test.espresso.core.internal.deps.guava.io.ByteStreams.toByteArray
 import com.km.letmeoutkmitl.signin.SignInWithFB
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
     public fun checkLogin(){
         if (!UserSP.getUid(this).equals("")){
 //            Login Sucess
+            FirebaseMessaging.getInstance().subscribeToTopic(UserSP.getUid(this))
             val intent = Intent(this, MainActivityy::class.java)
             startActivity(intent)
             finish()
