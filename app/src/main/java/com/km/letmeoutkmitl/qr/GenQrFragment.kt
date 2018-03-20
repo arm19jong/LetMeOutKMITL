@@ -42,6 +42,8 @@ class GenQrFragment :BaseFragment(),  SimpleDialog.OnDialogResultListener {
     var offColor:Int = 0xFFFF6000.toInt()
     var uid:String = ""
     var bitmap:Bitmap? = null
+    val BackgroundTag: String = "backgroundTag"
+    val ForegroundTag: String = "foregroungTag"
 
     companion object Factory {
         fun newInstance(): GenQrFragment {
@@ -56,16 +58,16 @@ class GenQrFragment :BaseFragment(),  SimpleDialog.OnDialogResultListener {
         if (which != -1){
             return false
         }
-        if(dialogTag=="123"){
+        if(dialogTag==ForegroundTag){
             onColor = extras.getInt(SimpleColorDialog.COLOR)
             bindView!!.pic.setImageBitmap(genQr(onColor, offColor))
-            bindView!!.buttonIn.background.setColorFilter(onColor, PorterDuff.Mode.SRC_IN)
+            bindView!!.buttonFourground.background.setColorFilter(onColor, PorterDuff.Mode.SRC_IN)
 //            bindView!!.textIn.setTextColor(onColor)
         }
-        else if (dialogTag=="456"){
+        else if (dialogTag==BackgroundTag){
             offColor = extras.getInt(SimpleColorDialog.COLOR)
             bindView!!.pic.setImageBitmap(genQr(onColor, offColor))
-            bindView!!.buttonOut.background.setColorFilter(offColor, PorterDuff.Mode.SRC_IN)
+            bindView!!.buttonBackground.background.setColorFilter(offColor, PorterDuff.Mode.SRC_IN)
 //            bindView!!.textOut.setTextColor(offColor)
         }
 
@@ -82,19 +84,15 @@ class GenQrFragment :BaseFragment(),  SimpleDialog.OnDialogResultListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindView = view
-        bindView!!.layoutIn.setOnClickListener {
-            selectColor("123", "Color In")
+        bindView!!.layoutForeground.setOnClickListener {
+            selectColor(ForegroundTag, "Foreground Color")
         }
-        bindView!!.layoutOut.setOnClickListener {
-            selectColor("456", "Color Out")
+        bindView!!.layoutBackground.setOnClickListener {
+            selectColor(BackgroundTag, "Background Color")
         }
-//        bindView!!.buttonIn.setBackgroundColor(onColor)
-        bindView!!.buttonIn.background.setColorFilter(onColor, PorterDuff.Mode.SRC_IN)
-//        bindView!!.textIn.setTextColor(onColor)
+        bindView!!.buttonFourground.background.setColorFilter(onColor, PorterDuff.Mode.SRC_IN)
 
-//        bindView!!.buttonOut.setBackgroundColor(offColor)
-        bindView!!.buttonOut.background.setColorFilter(offColor, PorterDuff.Mode.SRC_IN)
-//        bindView!!.textOut.setTextColor(offColor)
+        bindView!!.buttonBackground.background.setColorFilter(offColor, PorterDuff.Mode.SRC_IN)
 
         bindView!!.pic.setImageBitmap(genQr(onColor, offColor))
         bindView!!.layoutShare.setOnClickListener {
@@ -157,12 +155,12 @@ class GenQrFragment :BaseFragment(),  SimpleDialog.OnDialogResultListener {
             fOut = FileOutputStream(file)
 
             bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, fOut)
-            fOut!!.flush()
-            fOut!!.close()
+            fOut.flush()
+            fOut.close()
 
-            MediaStore.Images.Media.insertImage(this.context!!.contentResolver, file.getAbsolutePath(), file.getName(), file.getName())
+            MediaStore.Images.Media.insertImage(this.context!!.contentResolver, file.absolutePath, file.name, file.name)
             updateImage(file)
-            Toast.makeText(this.context!!, "save done", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.context!!, getString(R.string.save_done), Toast.LENGTH_SHORT).show()
 
         } catch (e: Exception) {
             e.printStackTrace()

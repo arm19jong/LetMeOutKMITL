@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         if (!UserSP.getUid(this).equals("")){
 //            Login Sucess
             FirebaseMessaging.getInstance().subscribeToTopic(UserSP.getUid(this))
-            val intent = Intent(this, MainActivityy::class.java)
+            val intent = Intent(this, HomeActivityy::class.java)
             startActivity(intent)
             finish()
             return

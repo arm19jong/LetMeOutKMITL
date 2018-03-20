@@ -24,7 +24,7 @@
             android:layout_width="240dp"
             android:layout_height="40dp"
             android:inputType="textEmailAddress"
-            android:hint="email" />
+            android:hint="@string/email" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -42,7 +42,7 @@
             android:layout_height="40dp"
             android:maxLines="1"
             android:inputType="text"
-            android:hint="firstname" />
+            android:hint="@string/firstname" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -60,7 +60,7 @@
             android:layout_height="40dp"
             android:maxLines="1"
             android:inputType="text"
-            android:hint="lastname" />
+            android:hint="@string/lastname" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -76,7 +76,7 @@
             android:id="@+id/mobilephone1"
             android:layout_width="240dp"
             android:layout_height="40dp"
-            android:hint="mobilephone1"
+            android:hint="@string/mobilephone1"
             android:inputType="number"
             android:maxLength="10" />
     </android.support.design.widget.TextInputLayout>
@@ -94,7 +94,7 @@
             android:id="@+id/mobilephone2"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:hint="mobilephone2"
+            android:hint="@string/mobilephone2"
             android:inputType="number"
             android:maxLength="10"
             />
@@ -114,7 +114,7 @@
             android:id="@+id/officephone"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:hint="officephone"
+            android:hint="@string/officephone"
             android:inputType="number"
             android:maxLength="9"
             android:text="" />
@@ -125,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/orange"
-        android:text="save"
+        android:text="@string/save_contact"
         android:textColor="@color/white"
         />
 

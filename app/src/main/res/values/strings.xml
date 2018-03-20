@@ -6,4 +6,17 @@
     <string name="scan">SCAN</string>
     <string name="generate">GENERATE</string>
     <string name="profile">PROFILE</string>
+
+    <string name="save_done">save_done</string>
+
+    <string name="permission_not_granted">permission not granted</string>
+    <string name="press_once_again_to_exit">Press once again to exit!</string>
+    <string name="firstname">firstname</string>
+    <string name="lastname">lastname</string>
+    <string name="email">email</string>
+    <string name="mobilephone1">mobilephone1</string>
+    <string name="mobilephone2">mobilephone2</string>
+    <string name="officephone">officephone</string>
+    <string name="noti">Send Notification</string>
+    <string name="save_contact">save</string>
 </resources>

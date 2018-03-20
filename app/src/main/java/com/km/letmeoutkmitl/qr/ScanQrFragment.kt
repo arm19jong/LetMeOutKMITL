@@ -3,15 +3,11 @@ package com.km.letmeoutkmitl.qr
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.zxing.Result
-import com.km.letmeoutkmitl.MainActivityy
 import com.km.letmeoutkmitl.R
 import com.km.letmeoutkmitl.baseclass.BaseFragment
 import com.km.letmeoutkmitl.user.ShowProfileActivity

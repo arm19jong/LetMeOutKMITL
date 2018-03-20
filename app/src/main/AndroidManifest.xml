@@ -46,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".baseclass.BaseActivity" />
-        <activity android:name=".MainActivityy" />
+        <activity android:name=".HomeActivityy" />
         <activity android:name=".user.ShowProfileActivity" />
 
         <service

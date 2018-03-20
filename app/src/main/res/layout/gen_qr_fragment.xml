@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/layoutIn"
+        android:id="@+id/layoutForeground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textIn"
+            android:id="@+id/textForeground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
@@ -30,7 +30,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/buttonIn"
+            android:id="@+id/buttonFourground"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
@@ -40,19 +40,19 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layoutOut"
+        android:id="@+id/layoutBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutIn"
+        app:layout_constraintTop_toBottomOf="@id/layoutForeground"
         android:gravity="center_horizontal|center_vertical"
         android:clickable="true">
 
         <TextView
-            android:id="@+id/textOut"
+            android:id="@+id/textBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BG COLOR"
@@ -62,7 +62,7 @@
             android:clickable="false"/>
 
         <Button
-            android:id="@+id/buttonOut"
+            android:id="@+id/buttonBackground"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
@@ -148,5 +148,5 @@
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutOut" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutBackground" />
 </android.support.constraint.ConstraintLayout>

@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:padding="8dp"
-            android:text="firstname"
+            android:text="@string/firstname"
             android:textSize="24sp"
             />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:padding="8dp"
-            android:text="lastname"
+            android:text="@string/lastname"
             android:textSize="24sp"/>
     </LinearLayout>
     <TextView
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:padding="8dp"
-        android:text="email" />
+        android:text="@string/email" />
 
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:padding="8dp"
-        android:text="mobilephone1" />
+        android:text="@string/mobilephone1" />
 
     <TextView
         android:id="@+id/mobilephone2"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:padding="8dp"
-        android:text="mobilephone2" />
+        android:text="@string/mobilephone2" />
 
     <TextView
         android:id="@+id/officephone"
@@ -62,13 +62,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:padding="8dp"
-        android:text="officephone" />
+        android:text="@string/officephone" />
 
     <Button
         android:id="@+id/noti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="noti"
+        android:text="@string/noti"
         android:background="@color/orange"
         android:textColor="@color/white"
         />

@@ -15,8 +15,9 @@ import com.km.letmeoutkmitl.user.UserSP
  * Created by jongzazaal on 2/15/2018.
  */
 class ManageUser : ViewModel() {
+    private val KEY_USER = "Users"
     private var mRootRef = FirebaseDatabase.getInstance().reference
-    private var databaseUser = mRootRef.child("Users")
+    private var databaseUser = mRootRef.child(KEY_USER)
     private var addOrEditUserBool: MutableLiveData<Boolean>? = null
     private var user: MutableLiveData<User>? = null
 
@@ -47,7 +48,7 @@ class ManageUser : ViewModel() {
                         user!!.value = User()
                     }
                     else{
-                        user!!.value = p0!!.getValue(User::class.java)
+                        user!!.value = p0.getValue(User::class.java)
                     }
                 }
             })

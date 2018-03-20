@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.main_activity.*
 /**
  * Created by jongzazaal on 2/21/2018.
  */
-class MainActivityy:BaseActivity() {
+class HomeActivityy :BaseActivity() {
     private val TIME_DELAY = 2000
     private var back_pressed: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,7 @@ class MainActivityy:BaseActivity() {
                                 }
 
                                 override fun onPermissionDenied(response: PermissionDeniedResponse?) {
-                                    Toast.makeText(this@MainActivityy,"permission not granted",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@HomeActivityy,getString(R.string.permission_not_granted),Toast.LENGTH_SHORT).show()
                                 }
                             }).check()
                 }
@@ -55,7 +55,7 @@ class MainActivityy:BaseActivity() {
         if (back_pressed + TIME_DELAY > System.currentTimeMillis()) {
             super.onBackPressed()
         } else {
-            Toast.makeText(baseContext, "Press once again to exit!",
+            Toast.makeText(baseContext, getString(R.string.press_once_again_to_exit),
                     Toast.LENGTH_SHORT).show()
         }
         back_pressed = System.currentTimeMillis()
