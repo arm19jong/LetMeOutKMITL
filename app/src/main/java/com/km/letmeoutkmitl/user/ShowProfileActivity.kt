@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.edit_profile_fragment.view.*
 import kotlinx.android.synthetic.main.show_profile_activity.*
 import android.net.Uri.fromParts
 import android.util.Log
+import android.widget.Toast
 import com.google.gson.JsonObject
 import com.km.letmeoutkmitl.firebase.SendNotificationAPI
 import com.km.letmeoutkmitl.firebase.model.SendNotificationModel
@@ -66,14 +67,17 @@ class ShowProfileActivity:BaseActivity() {
                     }
                     user = it
                 })
-        mobilephone1.setOnClickListener{
+        mobilephone1_layout.setOnClickListener{
             dialContactPhone(user.mobilephone1)
         }
-        mobilephone2.setOnClickListener{
+        mobilephone2_layout.setOnClickListener{
             dialContactPhone(user.mobilephone2)
         }
-        officephone.setOnClickListener{
+        officephone_layout.setOnClickListener{
             dialContactPhone(user.officephone)
+        }
+        email_layout.setOnClickListener {
+            sendEmail(user.email)
         }
         noti.setOnClickListener{
             var notification = SendNotificationModel()
@@ -84,6 +88,7 @@ class ShowProfileActivity:BaseActivity() {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     val s = response.body()!!.toString()
                     Log.d("TAG2", "onResponse: " + s)
+                    Toast.makeText(this@ShowProfileActivity, "ส่งเรียบร้อย", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
@@ -97,5 +102,14 @@ class ShowProfileActivity:BaseActivity() {
 
     private fun dialContactPhone(phoneNumber: String) {
         startActivity(Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)))
+    }
+
+    private fun sendEmail(email:String){
+        val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", email, null))
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, "address")
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "กรุณามาเลื่อนรถ")
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "รถของคุณขวางทางอยู่กรุณามาเลื่อนรถออกไปด้วย")
+        startActivity(Intent.createChooser(emailIntent, "Send Email..."))
     }
 }

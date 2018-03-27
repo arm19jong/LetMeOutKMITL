@@ -4,10 +4,8 @@ import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v4.content.ContextCompat
+import android.view.*
 import android.widget.Toast
 import com.km.letmeoutkmitl.R
 import com.km.letmeoutkmitl.baseclass.BaseFragment
@@ -15,6 +13,11 @@ import com.km.letmeoutkmitl.firebase.ManageUser
 import kotlinx.android.synthetic.main.edit_profile_fragment.*
 import kotlinx.android.synthetic.main.edit_profile_fragment.view.*
 import android.view.KeyEvent.KEYCODE_ENTER
+import android.app.Activity
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+import android.content.Context.INPUT_METHOD_SERVICE
+
 
 
 
@@ -42,6 +45,7 @@ class EditProfileFragment :BaseFragment() {
     var bindView:View? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        toSave()
         bindView = view
         bindView!!.save.setOnClickListener {
             if (check()){
@@ -96,7 +100,15 @@ class EditProfileFragment :BaseFragment() {
         return bool
 
     }
+    var isSave = true
     fun save(){
+        if (isSave){
+            toEdit()
+            return
+        }
+        else{
+            toSave()
+        }
         user = User(
                 email = bindView!!.email.text.toString(),
                 firstname = bindView!!.firstname.text.toString(),
@@ -142,8 +154,53 @@ class EditProfileFragment :BaseFragment() {
                         bindView!!.mobilephone2.setText(it.mobilephone2)
                         bindView!!.officephone.setText(it.officephone)
                     }
+                    toSave()
                 })
 
     }
+    fun toSave(){
+        save.text = "EDIT"
+        isSave = true
+        email.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+        firstname.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+        lastname.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+        mobilephone1.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+        mobilephone2.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+        officephone.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+
+//        email.clearFocus()
+
+//        email.isCursorVisible = false
+        email.isEnabled = false
+        firstname.isEnabled = false
+        lastname.isEnabled = false
+        mobilephone1.isEnabled = false
+        mobilephone2.isEnabled = false
+        officephone.isEnabled = false
+
+        email.clearFocus()
+        layout.requestFocus()
+//        email.c(ContextCompat.getColor(context!!, R.color.black))
+
+    }
+    fun toEdit(){
+        save.text = "SAVE"
+        isSave = false
+        email.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+        firstname.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+        lastname.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+        mobilephone1.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+        mobilephone2.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+        officephone.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+
+
+        email.isEnabled = true
+        firstname.isEnabled = true
+        lastname.isEnabled = true
+        mobilephone1.isEnabled = true
+        mobilephone2.isEnabled = true
+        officephone.isEnabled = true
+    }
+
 
 }

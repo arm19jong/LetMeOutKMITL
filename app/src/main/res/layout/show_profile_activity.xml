@@ -7,10 +7,11 @@
     android:padding="8dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
+        android:layout_margin="4dp"
         >
         <TextView
             android:id="@+id/firstname"
@@ -31,38 +32,104 @@
             android:text="@string/lastname"
             android:textSize="24sp"/>
     </LinearLayout>
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/email_layout"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_border_edittext"
+        android:orientation="horizontal"
         android:layout_margin="4dp"
-        android:padding="8dp"
-        android:text="@string/email" />
+        android:gravity="center"
+
+        >
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:text="@string/email" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_email"
+            android:clickable="false"/>
+    </LinearLayout>
 
 
+    <LinearLayout
+        android:id="@+id/mobilephone1_layout"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_border_edittext"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        >
     <TextView
         android:id="@+id/mobilephone1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:padding="8dp"
-        android:text="@string/mobilephone1" />
+        android:text="@string/mobilephone1"
+        android:gravity="center"
+        android:clickable="false"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_phone"
+            android:clickable="false"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/mobilephone2_layout"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_border_edittext"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        >
     <TextView
         android:id="@+id/mobilephone2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:padding="8dp"
-        android:text="@string/mobilephone2" />
+        android:text="@string/mobilephone2"
+        android:clickable="false"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_phone"
+            android:clickable="false"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/officephone_layout"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_border_edittext"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="4dp"
+
+        >
     <TextView
         android:id="@+id/officephone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:padding="8dp"
-        android:text="@string/officephone" />
+        android:text="@string/officephone"
+        android:clickable="false"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_phone"
+            android:clickable="false"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/noti"
@@ -71,6 +138,9 @@
         android:text="@string/noti"
         android:background="@color/orange"
         android:textColor="@color/white"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+
         />
 
 

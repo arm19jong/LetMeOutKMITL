@@ -49,7 +49,7 @@ class HomeActivityy :BaseActivity() {
             }
             true
         }
-        bottomNavigationView.selectedItemId = R.id.item_gen
+        bottomNavigationView.selectedItemId = R.id.item_profile
     }
     override fun onBackPressed() {
         if (back_pressed + TIME_DELAY > System.currentTimeMillis()) {

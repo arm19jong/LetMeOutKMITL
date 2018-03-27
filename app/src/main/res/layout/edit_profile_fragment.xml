@@ -4,17 +4,19 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:background="@drawable/rounded_border_edittext"
         android:paddingTop="4dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp">
@@ -24,14 +26,17 @@
             android:layout_width="240dp"
             android:layout_height="40dp"
             android:inputType="textEmailAddress"
-            android:hint="@string/email" />
+            android:hint="@string/email"
+            android:enabled="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:background="@drawable/rounded_border_edittext"
         android:paddingTop="4dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp">
@@ -42,14 +47,14 @@
             android:layout_height="40dp"
             android:maxLines="1"
             android:inputType="text"
-            android:hint="@string/firstname" />
+            android:hint="@string/firstname"
+            />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:background="@drawable/rounded_border_edittext"
         android:paddingTop="4dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp">
@@ -67,7 +72,6 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:background="@drawable/rounded_border_edittext"
         android:paddingTop="4dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp">
@@ -85,7 +89,6 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:background="@drawable/rounded_border_edittext"
         android:paddingTop="4dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp">
@@ -105,7 +108,6 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/rounded_border_edittext"
         android:paddingTop="4dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp">
@@ -127,6 +129,7 @@
         android:background="@color/orange"
         android:text="@string/save_contact"
         android:textColor="@color/white"
+
         />
 
 
