@@ -73,6 +73,7 @@ class EditProfileFragment :BaseFragment() {
 
     fun check():Boolean{
         var bool = true
+        if(isSave){return bool}
         if (email.text.toString() == ""){
             bool = false
             email.error = "not null"
