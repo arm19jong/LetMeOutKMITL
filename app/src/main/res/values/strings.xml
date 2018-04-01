@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LetMeOutKMITL</string>
+    <string name="app_name">LET ME OUT KMITL</string>
     <string name="default_web_client_id2">AIzaSyBccHrLAfv1573G4Zwimz6GewncTwdpN80</string>
     <string name="facebook_app_id">1897920360221169</string>
     <string name="fb_login_protocol_scheme">fb1897920360221169</string>
@@ -11,12 +11,18 @@
 
     <string name="permission_not_granted">permission not granted</string>
     <string name="press_once_again_to_exit">Press once again to exit!</string>
-    <string name="firstname">firstname</string>
-    <string name="lastname">lastname</string>
+    <string name="firstname">ชื่อ</string>
+    <string name="lastname">นามสกุล</string>
+    <string name="student_id">รหัสนักศึกษา</string>
+    <string name="faculty">คณะ</string>
+    <string name="line_id">Line</string>
     <string name="email">email</string>
-    <string name="mobilephone1">mobilephone1</string>
+    <string name="mobilephone1">เบอร์โทร</string>
     <string name="mobilephone2">mobilephone2</string>
     <string name="officephone">officephone</string>
     <string name="noti">Send Notification</string>
+    <string name="comment_button">Send Comment</string>
     <string name="save_contact">save</string>
+    <string name="edit_contact">edit</string>
+
 </resources>

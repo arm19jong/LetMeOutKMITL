@@ -45,7 +45,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * @param data FCM data payload received.
      */
     private fun sendNotification(notification: RemoteMessage.Notification?, data: Map<String, String>) {
-        val icon = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
+        val icon = BitmapFactory.decodeResource(resources, R.drawable.logo)
 
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -62,7 +62,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 .setColor(Color.RED)
                 .setLights(Color.RED, 1000, 300)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.logo)
 
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

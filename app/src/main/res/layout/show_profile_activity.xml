@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_show_user"
+    android:fillViewport="true">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+
+    >
 
     <LinearLayout
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_margin="4dp"
-        >
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/firstname"
             android:layout_width="wrap_content"
@@ -20,8 +42,7 @@
             android:layout_margin="4dp"
             android:padding="8dp"
             android:text="@string/firstname"
-            android:textSize="24sp"
-            />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/lastname"
@@ -30,118 +51,278 @@
             android:layout_margin="4dp"
             android:padding="8dp"
             android:text="@string/lastname"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/email_layout"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_border_edittext"
-        android:orientation="horizontal"
         android:layout_margin="4dp"
         android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone"
 
         >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:src="@drawable/ic_email" />
+
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:background="@drawable/rounded_border_edittext"
             android:padding="8dp"
             android:text="@string/email" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_email"
-            android:clickable="false"/>
+
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/student_id_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="false"
+            android:src="@drawable/ic_student_id" />
+
+        <TextView
+            android:id="@+id/student_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_border_edittext"
+            android:clickable="false"
+            android:padding="8dp"
+            android:text="@string/student_id" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/faculty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="false"
+            android:src="@drawable/ic_faculty" />
+
+        <TextView
+            android:id="@+id/faculty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_border_edittext"
+            android:clickable="false"
+            android:padding="8dp"
+            android:text="@string/faculty" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/mobilephone1_layout"
-        android:layout_width="220dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_border_edittext"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_margin="4dp"
-        >
-    <TextView
-        android:id="@+id/mobilephone1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:padding="8dp"
-        android:text="@string/mobilephone1"
-        android:gravity="center"
-        android:clickable="false"/>
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="false"
+            android:src="@drawable/ic_mobilephone" />
+
+        <TextView
+            android:id="@+id/mobilephone1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_phone"
-            android:clickable="false"/>
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_border_edittext"
+            android:clickable="false"
+            android:padding="8dp"
+            android:text="@string/mobilephone1" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/line_id_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="false"
+            android:src="@drawable/ic_line_id" />
+
+        <TextView
+            android:id="@+id/line_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_border_edittext"
+            android:clickable="false"
+            android:padding="8dp"
+            android:text="@string/line_id" />
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/mobilephone2_layout"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:background="@drawable/rounded_border_edittext"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:layout_margin="4dp"
-        >
-    <TextView
-        android:id="@+id/mobilephone2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:padding="8dp"
-        android:text="@string/mobilephone2"
-        android:clickable="false"/>
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/mobilephone2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:clickable="false"
+            android:padding="8dp"
+            android:text="@string/mobilephone2" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_phone"
-            android:clickable="false"/>
+            android:clickable="false"
+            android:src="@drawable/ic_phone" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/officephone_layout"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_border_edittext"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_margin="4dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone"
 
         >
-    <TextView
-        android:id="@+id/officephone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:padding="8dp"
-        android:text="@string/officephone"
-        android:clickable="false"/>
+
+        <TextView
+            android:id="@+id/officephone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:clickable="false"
+            android:padding="8dp"
+            android:text="@string/officephone"
+            android:visibility="gone" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_phone"
-            android:clickable="false"/>
+            android:clickable="false"
+            android:src="@drawable/ic_phone" />
     </LinearLayout>
 
     <Button
+        android:layout_gravity="end"
         android:id="@+id/noti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/noti"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
         android:background="@color/orange"
-        android:textColor="@color/white"
-        android:layout_margin="4dp"
         android:padding="4dp"
+        android:text="@string/noti"
+        android:textColor="@color/white"
 
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        >
+        <LinearLayout
+            android:id="@+id/comment_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_comment"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comment"
+                android:textStyle="bold"
+                android:layout_below="@id/comment_iv"
+                />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="3"
+            android:maxLines="3"
+            android:padding="8dp"
+            android:background="@drawable/rounded_border_edittext"
+            android:hint="@string/comment_button"
+            android:layout_toRightOf="@id/comment_iv"
+            />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="20dp"
+            android:background="@drawable/i_love_kmitl"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            />
+    </RelativeLayout>
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/comment_button"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/orange"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:text="@string/comment_button"
+        android:textColor="@color/white"
+        android:textSize="12sp"
         />
 
 
+
 </LinearLayout>
+</ScrollView>
+</FrameLayout>

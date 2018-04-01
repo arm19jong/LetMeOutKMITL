@@ -7,6 +7,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.km.letmeoutkmitl.user.Comment
 import com.km.letmeoutkmitl.user.User
 import com.km.letmeoutkmitl.user.UserSP
 
@@ -16,9 +17,13 @@ import com.km.letmeoutkmitl.user.UserSP
  */
 class ManageUser : ViewModel() {
     private val KEY_USER = "Users"
+    private val KEY_COMMENT = "Comment"
+
     private var mRootRef = FirebaseDatabase.getInstance().reference
     private var databaseUser = mRootRef.child(KEY_USER)
+    private var databaseComment = mRootRef.child(KEY_COMMENT)
     private var addOrEditUserBool: MutableLiveData<Boolean>? = null
+    private var sendCommentBool: MutableLiveData<Boolean>? = null
     private var user: MutableLiveData<User>? = null
 
     fun addOrEditUser(uid: String, user: User): LiveData<Boolean> {
@@ -27,12 +32,18 @@ class ManageUser : ViewModel() {
             databaseUser.child(uid).setValue(user)
                     .addOnCompleteListener {
                         addOrEditUserBool!!.value = true
+                        addOrEditUserBool = null
                     }
                     .addOnFailureListener {
                         addOrEditUserBool!!.value = false
+                        addOrEditUserBool = null
+
                     }
         }
         return addOrEditUserBool!!
+    }
+    fun clear(){
+        addOrEditUserBool = null
     }
 
     fun getUser(uid: String): LiveData<User>{
@@ -55,5 +66,19 @@ class ManageUser : ViewModel() {
 
         }
         return user!!
+    }
+
+    fun sendComment(uid: String, comment:Comment): LiveData<Boolean>{
+        if (sendCommentBool == null) {
+            sendCommentBool = MutableLiveData()
+            databaseComment.child(uid).push().setValue(comment)
+                    .addOnCompleteListener {
+                        sendCommentBool!!.value = true
+                    }
+                    .addOnFailureListener {
+                        sendCommentBool!!.value = false
+                    }
+        }
+        return sendCommentBool!!
     }
 }

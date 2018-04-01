@@ -25,6 +25,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.converter.gson.GsonConverterFactory
+import android.support.v4.app.NavUtils
+import android.support.v7.widget.Toolbar
+import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
 
 
 /**
@@ -36,6 +41,11 @@ class ShowProfileActivity:BaseActivity() {
     var progress_spinner: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var backButton = getDrawable(R.drawable.ic_back)
+        supportActionBar!!.setHomeAsUpIndicator(backButton)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+//        val view = findViewById<View>(android.R.id.home) as ImageView
+//        view.setPadding(0, 0, 0, 0)
         setContentView(R.layout.show_profile_activity)
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://fcm.googleapis.com/fcm/")
@@ -58,26 +68,18 @@ class ShowProfileActivity:BaseActivity() {
 //                        email.text = UserSP.getEmail(this)
                     }
                     else{
-                        email.text = it!!.email
-                        firstname.text = it.firstname
+                        firstname.text = it!!.firstname
                         lastname.text = it.lastname
+                        student_id.text = it.student_id
+                        faculty.text = it.faculty
                         mobilephone1.text = it.mobilephone1
-                        mobilephone2.text = it.mobilephone2
-                        officephone.text = it.officephone
+                        line_id.text = it.line_id
+
                     }
                     user = it
                 })
         mobilephone1_layout.setOnClickListener{
             dialContactPhone(user.mobilephone1)
-        }
-        mobilephone2_layout.setOnClickListener{
-            dialContactPhone(user.mobilephone2)
-        }
-        officephone_layout.setOnClickListener{
-            dialContactPhone(user.officephone)
-        }
-        email_layout.setOnClickListener {
-            sendEmail(user.email)
         }
         noti.setOnClickListener{
             var notification = SendNotificationModel()
@@ -97,6 +99,20 @@ class ShowProfileActivity:BaseActivity() {
             })
 
         }
+        comment_button.setOnClickListener{
+
+            ViewModelProviders.of(this@ShowProfileActivity)
+                    .get(ManageUser::class.java)
+                    .sendComment(uid, Comment(comment.text.toString()))
+                    .observe(this, Observer {
+                        if (it==true){
+                            Toast.makeText(this, "ส่งเรียบร้อย", Toast.LENGTH_SHORT).show()
+                        }
+                        else{
+                            Toast.makeText(this, "Send Failed", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+        }
     }
 
 
@@ -111,5 +127,18 @@ class ShowProfileActivity:BaseActivity() {
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "กรุณามาเลื่อนรถ")
         emailIntent.putExtra(Intent.EXTRA_TEXT, "รถของคุณขวางทางอยู่กรุณามาเลื่อนรถออกไปด้วย")
         startActivity(Intent.createChooser(emailIntent, "Send Email..."))
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+        // This is the up button
+            android.R.id.home -> {
+//                NavUtils.navigateUpFromSameTask(this)
+                // overridePendingTransition(R.animator.anim_left, R.animator.anim_right);
+                onBackPressed()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 }

@@ -54,7 +54,10 @@ class EditProfileFragment :BaseFragment() {
             return@setOnClickListener
 
         }
-        bindView!!.officephone.setOnKeyListener(object : View.OnKeyListener {
+        bindView!!.edit.setOnClickListener {
+            toEdit()
+        }
+        bindView!!.line_id.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
                 // If the event is a key-down event on the "enter" button
                 if ((event.action == KeyEvent.ACTION_DOWN) && keyCode == KeyEvent.KEYCODE_ENTER) {
@@ -74,11 +77,6 @@ class EditProfileFragment :BaseFragment() {
     fun check():Boolean{
         var bool = true
         if(isSave){return bool}
-        if (email.text.toString() == ""){
-            bool = false
-            email.error = "not null"
-        }
-        else{email.error = null}
 
         if(firstname.text.toString() == ""){
             bool = false
@@ -104,7 +102,7 @@ class EditProfileFragment :BaseFragment() {
     var isSave = true
     fun save(){
         if (isSave){
-            toEdit()
+//            toEdit()
             return
         }
         else{
@@ -115,8 +113,9 @@ class EditProfileFragment :BaseFragment() {
                 firstname = bindView!!.firstname.text.toString(),
                 lastname = bindView!!.lastname.text.toString(),
                 mobilephone1 = bindView!!.mobilephone1.text.toString(),
-                mobilephone2 = bindView!!.mobilephone2.text.toString(),
-                officephone = bindView!!.officephone.text.toString()
+                student_id = bindView!!.student_id.text.toString(),
+                faculty = bindView!!.faculty.text.toString(),
+                line_id = bindView!!.line_id.text.toString()
         )
         ViewModelProviders.of(this)
                 .get(ManageUser::class.java)
@@ -144,63 +143,64 @@ class EditProfileFragment :BaseFragment() {
                 .observe(this@EditProfileFragment, Observer<User> {
                     progress_spinner!!.cancel()
                     if (it == User()){
-                        bindView!!.email.setText(UserSP.getEmail(this.context!!))
+//                        bindView!!.email.setText(UserSP.getEmail(this.context!!))
                     }
                     else{
                         UserSP.setEmail(this.context!!, it!!.email)
-                        bindView!!.email.setText(it.email)
+//                        bindView!!.email.setText(it.email)
                         bindView!!.firstname.setText(it.firstname)
                         bindView!!.lastname.setText(it.lastname)
                         bindView!!.mobilephone1.setText(it.mobilephone1)
-                        bindView!!.mobilephone2.setText(it.mobilephone2)
-                        bindView!!.officephone.setText(it.officephone)
+                        bindView!!.student_id.setText(it.student_id)
+                        bindView!!.faculty.setText(it.faculty)
+                        bindView!!.line_id.setText(it.line_id)
+
                     }
                     toSave()
                 })
 
     }
     fun toSave(){
-        save.text = "EDIT"
+//        save.text = "EDIT"
         isSave = true
-        email.setTextColor(ContextCompat.getColor(context!!, R.color.black))
         firstname.setTextColor(ContextCompat.getColor(context!!, R.color.black))
         lastname.setTextColor(ContextCompat.getColor(context!!, R.color.black))
         mobilephone1.setTextColor(ContextCompat.getColor(context!!, R.color.black))
-        mobilephone2.setTextColor(ContextCompat.getColor(context!!, R.color.black))
-        officephone.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+        student_id.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+        faculty.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+        line_id.setTextColor(ContextCompat.getColor(context!!, R.color.black))
 
-//        email.clearFocus()
 
-//        email.isCursorVisible = false
-        email.isEnabled = false
         firstname.isEnabled = false
         lastname.isEnabled = false
         mobilephone1.isEnabled = false
-        mobilephone2.isEnabled = false
-        officephone.isEnabled = false
+        student_id.isEnabled = false
+        faculty.isEnabled = false
+        line_id.isEnabled = false
 
-        email.clearFocus()
+//        email.clearFocus()
         layout.requestFocus()
-//        email.c(ContextCompat.getColor(context!!, R.color.black))
 
     }
     fun toEdit(){
-        save.text = "SAVE"
+//        save.text = "SAVE"
         isSave = false
-        email.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
         firstname.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
         lastname.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
         mobilephone1.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
-        mobilephone2.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
-        officephone.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+        student_id.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+        faculty.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+        line_id.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
 
 
-        email.isEnabled = true
         firstname.isEnabled = true
         lastname.isEnabled = true
         mobilephone1.isEnabled = true
-        mobilephone2.isEnabled = true
-        officephone.isEnabled = true
+        student_id.isEnabled = true
+        faculty.isEnabled = true
+        line_id.isEnabled = true
+
+
     }
 
 

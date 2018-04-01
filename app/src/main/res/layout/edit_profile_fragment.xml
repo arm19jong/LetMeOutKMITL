@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout"
     android:layout_width="match_parent"
@@ -13,124 +14,217 @@
     android:focusableInTouchMode="true"
     android:focusable="true">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:paddingTop="4dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:inputType="textEmailAddress"
-            android:hint="@string/email"
-            android:enabled="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:paddingTop="4dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
-
-        <EditText
-            android:id="@+id/firstname"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:maxLines="1"
-            android:inputType="text"
-            android:hint="@string/firstname"
-            />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:paddingTop="4dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
-
-        <EditText
-            android:id="@+id/lastname"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:maxLines="1"
-            android:inputType="text"
-            android:hint="@string/lastname" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:paddingTop="4dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
-
-        <EditText
-            android:id="@+id/mobilephone1"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:hint="@string/mobilephone1"
-            android:inputType="number"
-            android:maxLength="10" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:paddingTop="4dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
-
-        <EditText
-            android:id="@+id/mobilephone2"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/mobilephone2"
-            android:inputType="number"
-            android:maxLength="10"
-            />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/text_input_layout"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:paddingTop="4dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
-
-        <EditText
-            android:id="@+id/officephone"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/officephone"
-            android:inputType="number"
-            android:maxLength="9"
-            android:text="" />
-    </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/save"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
-        android:text="@string/save_contact"
-        android:textColor="@color/white"
+        android:background="#f0f0f0"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:visibility="gone"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
 
-        />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:inputType="textEmailAddress"
+                android:hint="@string/email"
+                android:enabled="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <EditText
+                android:id="@+id/firstname"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:hint="@string/firstname"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <EditText
+                android:id="@+id/lastname"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:hint="@string/lastname" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <EditText
+                android:id="@+id/student_id"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:inputType="number"
+                android:maxLength="8"
+                android:hint="@string/student_id" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <EditText
+                android:id="@+id/faculty"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:hint="@string/faculty" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <EditText
+                android:id="@+id/mobilephone1"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:hint="@string/mobilephone1"
+                android:inputType="number"
+                android:maxLength="10" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <EditText
+                android:id="@+id/line_id"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/line_id"
+                android:maxLines="1"
+                android:inputType="text"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:visibility="gone"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <EditText
+                android:id="@+id/mobilephone2"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/mobilephone2"
+                android:inputType="number"
+                android:maxLength="10"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:visibility="gone"
+            android:id="@+id/text_input_layout"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:paddingTop="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <EditText
+                android:id="@+id/officephone"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/officephone"
+                android:inputType="number"
+                android:maxLength="9"
+                android:text="" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"
+            android:text="@string/edit_contact"
+            android:textColor="@color/white"
+
+            />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:background="@drawable/i_love_kmitl"
+            android:layout_margin="8dp"
+            />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"
+            android:text="@string/save_contact"
+            android:textColor="@color/white"
+
+            />
+    </LinearLayout>
+
+
 
 
 </LinearLayout>
