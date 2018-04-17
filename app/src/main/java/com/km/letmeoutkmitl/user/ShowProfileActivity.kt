@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.edit_profile_fragment.view.*
 import kotlinx.android.synthetic.main.show_profile_activity.*
 import android.net.Uri.fromParts
 import android.util.Log
+import android.view.Menu
 import android.widget.Toast
 import com.google.gson.JsonObject
 import com.km.letmeoutkmitl.firebase.SendNotificationAPI
@@ -25,11 +26,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.converter.gson.GsonConverterFactory
-import android.support.v4.app.NavUtils
-import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import android.view.View
-import android.widget.ImageView
 
 
 /**
@@ -42,10 +39,11 @@ class ShowProfileActivity:BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var backButton = getDrawable(R.drawable.ic_back)
-        supportActionBar!!.setHomeAsUpIndicator(backButton)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-//        val view = findViewById<View>(android.R.id.home) as ImageView
-//        view.setPadding(0, 0, 0, 0)
+//        supportActionBar!!.setHomeAsUpIndicator(backButton)
+//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
+        supportActionBar!!.hide()
+
         setContentView(R.layout.show_profile_activity)
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://fcm.googleapis.com/fcm/")
@@ -113,6 +111,9 @@ class ShowProfileActivity:BaseActivity() {
                         }
                     })
         }
+        toolbar_home.setOnClickListener {
+            onBackPressed()
+        }
     }
 
 
@@ -138,7 +139,13 @@ class ShowProfileActivity:BaseActivity() {
                 onBackPressed()
                 return true
             }
+
+            R.id.toolbar_home -> {
+                onBackPressed()
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
+
 }

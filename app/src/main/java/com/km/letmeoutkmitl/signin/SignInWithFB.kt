@@ -94,7 +94,7 @@ class SignInWithFB : LifecycleObserver {
                             val user = mAuth!!.currentUser
 //                            updateUI(user)
                             UserSP.setUid(activity!!, user!!.uid)
-                            Toast.makeText(activity, "สำเร็จ: "+UserSP.getEmail(activity!!),
+                            Toast.makeText(activity, "สำเร็จ",
                                     Toast.LENGTH_SHORT).show()
                             val m = activity as MainActivity
                             m.checkLogin()
