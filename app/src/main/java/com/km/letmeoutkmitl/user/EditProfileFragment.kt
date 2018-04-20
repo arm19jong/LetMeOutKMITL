@@ -17,6 +17,8 @@ import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.util.Log
+import android.widget.ArrayAdapter
 
 
 
@@ -71,6 +73,9 @@ class EditProfileFragment :BaseFragment() {
                 return false
             }
         })
+        val spinnerArrayAdapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                facultyData)
+        bindView!!.faculty.adapter = spinnerArrayAdapter
 
     }
 
@@ -114,7 +119,7 @@ class EditProfileFragment :BaseFragment() {
                 lastname = bindView!!.lastname.text.toString(),
                 mobilephone1 = bindView!!.mobilephone1.text.toString(),
                 student_id = bindView!!.student_id.text.toString(),
-                faculty = bindView!!.faculty.text.toString(),
+                faculty = bindView!!.faculty.selectedItem.toString(),
                 line_id = bindView!!.line_id.text.toString()
         )
         ViewModelProviders.of(this)
@@ -129,10 +134,12 @@ class EditProfileFragment :BaseFragment() {
                     }
                 })
     }
+    var facultyData: MutableList<String> = arrayListOf("วิศวกรรมศาสตร์", "สถาปัตยกรรมศาสตร์", "ครุศาสตร์อุตสาหกรรมและเทคโนโลยี",
+            "เทคโนโลยีการเกษตร", "วิทยาศาสตร์", "อุตสาหกรรมเกษตร","เทคโนโลยีสารสนเทศ","วิทยาลัยนานาชาติ", "วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง",
+            "วิทยาลัยนวัตกรรมการผลิตขั้นสูง", "การบริหารและจัดการ", "วิทยาลัยอุตสาหกรรมการบินนานาชาติ", "ศิลปศาสตร์", "ไม่ระบุ")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         uid = UserSP.getUid(this.context!!)
-
         progress_spinner = ProgressDialog(this.context)
         progress_spinner!!.setMessage("Loading...")
         progress_spinner!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
@@ -152,7 +159,8 @@ class EditProfileFragment :BaseFragment() {
                         bindView!!.lastname.setText(it.lastname)
                         bindView!!.mobilephone1.setText(it.mobilephone1)
                         bindView!!.student_id.setText(it.student_id)
-                        bindView!!.faculty.setText(it.faculty)
+                        if (facultyData.indexOf(it.faculty)==-1){it.faculty = "ไม่ระบุ"}
+                        bindView!!.faculty.setSelection(facultyData.lastIndexOf(it.faculty))
                         bindView!!.line_id.setText(it.line_id)
 
                     }
@@ -167,7 +175,7 @@ class EditProfileFragment :BaseFragment() {
         lastname.setTextColor(ContextCompat.getColor(context!!, R.color.black))
         mobilephone1.setTextColor(ContextCompat.getColor(context!!, R.color.black))
         student_id.setTextColor(ContextCompat.getColor(context!!, R.color.black))
-        faculty.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+//        faculty.setTextColor(ContextCompat.getColor(context!!, R.color.black))
         line_id.setTextColor(ContextCompat.getColor(context!!, R.color.black))
 
 
@@ -189,7 +197,7 @@ class EditProfileFragment :BaseFragment() {
         lastname.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
         mobilephone1.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
         student_id.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
-        faculty.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+//        faculty.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
         line_id.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
 
 
