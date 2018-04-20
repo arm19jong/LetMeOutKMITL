@@ -17,6 +17,11 @@
         android:enabled="true"
         android:icon="@drawable/ic_genqr"
         android:title="@string/generate"/>
+    <item
+        android:id="@+id/item_comment"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/comment"/>
 
 
 </menu>

@@ -10,6 +10,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.km.letmeoutkmitl.baseclass.BaseActivity
+import com.km.letmeoutkmitl.comment.CommentFragment
 import com.km.letmeoutkmitl.qr.GenQrFragment
 import com.km.letmeoutkmitl.qr.ScanQrFragment
 import com.km.letmeoutkmitl.user.EditProfileFragment
@@ -45,6 +46,7 @@ class HomeActivityy :BaseActivity() {
                 }
                 R.id.item_gen ->{ pushFragment(GenQrFragment.newInstance()) }
                 R.id.item_profile ->{pushFragment(EditProfileFragment.newInstance())}
+                R.id.item_comment -> {pushFragment(CommentFragment.newInstance())}
 
             }
             true

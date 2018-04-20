@@ -97,20 +97,20 @@ class ShowProfileActivity:BaseActivity() {
             })
 
         }
-        comment_button.setOnClickListener{
-
-            ViewModelProviders.of(this@ShowProfileActivity)
-                    .get(ManageUser::class.java)
-                    .sendComment(uid, Comment(comment.text.toString()))
-                    .observe(this, Observer {
-                        if (it==true){
-                            Toast.makeText(this, "ส่งเรียบร้อย", Toast.LENGTH_SHORT).show()
-                        }
-                        else{
-                            Toast.makeText(this, "Send Failed", Toast.LENGTH_SHORT).show()
-                        }
-                    })
-        }
+//        comment_button.setOnClickListener{
+//
+//            ViewModelProviders.of(this@ShowProfileActivity)
+//                    .get(ManageUser::class.java)
+//                    .sendComment(uid, Comment(comment.text.toString()))
+//                    .observe(this, Observer {
+//                        if (it==true){
+//                            Toast.makeText(this, "ส่งเรียบร้อย", Toast.LENGTH_SHORT).show()
+//                        }
+//                        else{
+//                            Toast.makeText(this, "Send Failed", Toast.LENGTH_SHORT).show()
+//                        }
+//                    })
+//        }
         toolbar_home.setOnClickListener {
             onBackPressed()
         }

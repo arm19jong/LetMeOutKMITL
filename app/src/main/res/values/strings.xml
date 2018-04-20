@@ -6,6 +6,8 @@
     <string name="scan">SCAN</string>
     <string name="generate">GENERATE</string>
     <string name="profile">PROFILE</string>
+    <string name="comment">COMMENT</string>
+
 
     <string name="save_done">save_done</string>
 
