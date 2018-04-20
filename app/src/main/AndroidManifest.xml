@@ -48,6 +48,7 @@
         <activity android:name=".baseclass.BaseActivity" />
         <activity android:name=".HomeActivityy" />
         <activity android:name=".user.ShowProfileActivity" />
+        <activity android:name=".secretcode.SecretCodeActivity" />
 
         <service
             android:name=".fcm.MyFirebaseMessagingService">
@@ -62,6 +63,13 @@
             </intent-filter>
         </service>
 
+        <receiver android:name=".secretcode.CallReceiver" >
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SECRET_CODE" />
+
+                <data android:scheme="android_secret_code" android:host="555" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
