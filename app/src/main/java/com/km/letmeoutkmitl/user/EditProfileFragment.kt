@@ -3,6 +3,7 @@ package com.km.letmeoutkmitl.user
 import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.*
@@ -12,15 +13,8 @@ import com.km.letmeoutkmitl.baseclass.BaseFragment
 import com.km.letmeoutkmitl.firebase.ManageUser
 import kotlinx.android.synthetic.main.edit_profile_fragment.*
 import kotlinx.android.synthetic.main.edit_profile_fragment.view.*
-import android.view.KeyEvent.KEYCODE_ENTER
-import android.app.Activity
-import android.content.Context
-import android.view.inputmethod.InputMethodManager
-import android.content.Context.INPUT_METHOD_SERVICE
-import android.util.Log
 import android.widget.ArrayAdapter
-
-
+import kotlinx.android.synthetic.main.spinner_item.view.*
 
 
 /**
@@ -47,7 +41,7 @@ class EditProfileFragment :BaseFragment() {
     var bindView:View? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toSave()
+//        toSave()
         bindView = view
         bindView!!.save.setOnClickListener {
             if (check()){
@@ -73,9 +67,12 @@ class EditProfileFragment :BaseFragment() {
                 return false
             }
         })
-        val spinnerArrayAdapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+        val spinnerArrayAdapter = ArrayAdapter<String>(context, R.layout.spinner_item,
                 facultyData)
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
         bindView!!.faculty.adapter = spinnerArrayAdapter
+//        bindView!!.faculty.background.setColorFilter(ContextCompat.getColor(context!!,R.color.blue), PorterDuff.Mode.SRC_ATOP);
+//        bindView!!.faculty.tv_spinner_item.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
 
     }
 
@@ -100,6 +97,11 @@ class EditProfileFragment :BaseFragment() {
             mobilephone1.setError("not null")
         }
         else{mobilephone1.error = null}
+        if(mobilephone1.text.toString().length != 10){
+            bool = false
+            mobilephone1.setError("wrong pattern")
+        }
+        else{mobilephone1.error = null}
 
         return bool
 
@@ -111,7 +113,7 @@ class EditProfileFragment :BaseFragment() {
             return
         }
         else{
-            toSave()
+//            toSave()
         }
         user = User(
                 email = bindView!!.email.text.toString(),
@@ -122,11 +124,14 @@ class EditProfileFragment :BaseFragment() {
                 faculty = bindView!!.faculty.selectedItem.toString(),
                 line_id = bindView!!.line_id.text.toString()
         )
+
         ViewModelProviders.of(this)
                 .get(ManageUser::class.java)
                 .addOrEditUser(uid, user)
                 .observe(this, Observer {
                     if (it==true){
+                        userData = user
+                        toSave()
                         Toast.makeText(this.context, "Saved", Toast.LENGTH_SHORT).show()
                     }
                     else{
@@ -137,6 +142,7 @@ class EditProfileFragment :BaseFragment() {
     var facultyData: MutableList<String> = arrayListOf("วิศวกรรมศาสตร์", "สถาปัตยกรรมศาสตร์", "ครุศาสตร์อุตสาหกรรมและเทคโนโลยี",
             "เทคโนโลยีการเกษตร", "วิทยาศาสตร์", "อุตสาหกรรมเกษตร","เทคโนโลยีสารสนเทศ","วิทยาลัยนานาชาติ", "วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง",
             "วิทยาลัยนวัตกรรมการผลิตขั้นสูง", "การบริหารและจัดการ", "วิทยาลัยอุตสาหกรรมการบินนานาชาติ", "ศิลปศาสตร์", "ไม่ระบุ")
+    var userData:User? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         uid = UserSP.getUid(this.context!!)
@@ -149,10 +155,12 @@ class EditProfileFragment :BaseFragment() {
                 .getUser(uid)
                 .observe(this@EditProfileFragment, Observer<User> {
                     progress_spinner!!.cancel()
+//                    toSave()
                     if (it == User()){
 //                        bindView!!.email.setText(UserSP.getEmail(this.context!!))
                     }
                     else{
+                        userData = it
                         UserSP.setEmail(this.context!!, it!!.email)
 //                        bindView!!.email.setText(it.email)
                         bindView!!.firstname.setText(it.firstname)
@@ -178,6 +186,13 @@ class EditProfileFragment :BaseFragment() {
 //        faculty.setTextColor(ContextCompat.getColor(context!!, R.color.black))
         line_id.setTextColor(ContextCompat.getColor(context!!, R.color.black))
 
+        val spinnerArrayAdapter = ArrayAdapter<String>(context, R.layout.spinner_item,
+                facultyData)
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
+        faculty.adapter = spinnerArrayAdapter
+        faculty.background.setColorFilter(ContextCompat.getColor(context!!,R.color.black), PorterDuff.Mode.SRC_ATOP)
+        if (facultyData.indexOf(userData!!.faculty)==-1){userData!!.faculty = "ไม่ระบุ"}
+        faculty.setSelection(facultyData.lastIndexOf(userData!!.faculty))
 
         firstname.isEnabled = false
         lastname.isEnabled = false
@@ -199,6 +214,14 @@ class EditProfileFragment :BaseFragment() {
         student_id.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
 //        faculty.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
         line_id.setTextColor(ContextCompat.getColor(context!!, R.color.blue))
+
+        val spinnerArrayAdapter = ArrayAdapter<String>(context, R.layout.spinner_item_blue,
+                facultyData)
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_drop_down_blue)
+        faculty.adapter = spinnerArrayAdapter
+        faculty.background.setColorFilter(ContextCompat.getColor(context!!,R.color.blue), PorterDuff.Mode.SRC_ATOP)
+        if (facultyData.indexOf(userData!!.faculty)==-1){userData!!.faculty = "ไม่ระบุ"}
+        faculty.setSelection(facultyData.lastIndexOf(userData!!.faculty))
 
 
         firstname.isEnabled = true
