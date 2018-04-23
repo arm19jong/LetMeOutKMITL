@@ -158,6 +158,8 @@ class EditProfileFragment :BaseFragment() {
 //                    toSave()
                     if (it == User()){
 //                        bindView!!.email.setText(UserSP.getEmail(this.context!!))
+                        userData = it
+
                     }
                     else{
                         userData = it

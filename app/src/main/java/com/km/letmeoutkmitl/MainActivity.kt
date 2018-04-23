@@ -44,6 +44,13 @@ class MainActivity : AppCompatActivity() {
         }
         sign_in_button_fb.setReadPermissions(Arrays.asList("email", "public_profile"))
 
+        custom_sign_in_fb.setOnClickListener {
+            signInWithFB!!.signIn()
+        }
+        custom_sign_in_google.setOnClickListener {
+            signInWithGoogle!!.signIn()
+        }
+
     }
 
     override fun onStart() {

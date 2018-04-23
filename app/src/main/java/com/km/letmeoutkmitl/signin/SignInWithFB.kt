@@ -54,7 +54,7 @@ class SignInWithFB : LifecycleObserver {
     }
 
     fun signIn(){
-//        LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("email", "public_profile"))
+        LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("email", "public_profile"))
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(loginResult: LoginResult) {
